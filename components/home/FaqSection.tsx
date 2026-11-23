@@ -74,7 +74,9 @@ export function FaqSection() {
                   className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-mist/40"
                 >
                   <span className="text-sm font-semibold text-charcoal sm:text-base">{item.q}</span>
-                  <span
+                  <motion.span
+                    animate={prefersReducedMotion ? undefined : { rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2, ease }}
                     className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border text-xs font-bold transition-colors ${
                       isOpen
                         ? "border-brand bg-brand text-white"
@@ -82,7 +84,7 @@ export function FaqSection() {
                     }`}
                   >
                     {isOpen ? "−" : "+"}
-                  </span>
+                  </motion.span>
                 </button>
                 <AnimatePresence initial={false}>
                   {isOpen && (

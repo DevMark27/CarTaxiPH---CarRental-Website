@@ -75,9 +75,10 @@ export function MadeForEveryJourneySection() {
               key={item.title}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={prefersReducedMotion ? undefined : { y: -6 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease }}
-              className="group overflow-hidden rounded-2xl border border-line bg-white transition-all duration-300 hover:-translate-y-1 hover:border-charcoal/30 hover:shadow-[0_20px_50px_-24px_rgba(17,17,17,0.18)]"
+              transition={{ duration: 0.45, delay: i * 0.08, ease }}
+              className="group relative overflow-hidden rounded-2xl border border-line bg-white transition-colors duration-300 hover:border-charcoal/35 hover:shadow-[0_24px_54px_-24px_rgba(17,17,17,0.22)]"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-charcoal">
                 <Image
@@ -87,9 +88,12 @@ export function MadeForEveryJourneySection() {
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <span className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover:scale-x-100" />
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-charcoal">{item.title}</h3>
+                <h3 className="text-lg font-semibold text-charcoal transition-colors group-hover:text-brand">
+                  {item.title}
+                </h3>
                 <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
               </div>
             </motion.article>

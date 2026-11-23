@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowRightIcon } from "@/components/Icons";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export function FinalCtaSection() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section className="relative overflow-hidden bg-charcoal py-20 text-white sm:py-24">
       {/* Subtle automotive backdrop */}
@@ -23,9 +25,11 @@ export function FinalCtaSection() {
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/90 to-ink/85"
       />
-      <div
+      <motion.div
         aria-hidden="true"
-        className="absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/20 blur-3xl"
+        animate={prefersReducedMotion ? undefined : { scale: [1, 1.15, 1], opacity: [0.18, 0.32, 0.18] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/25 blur-3xl"
       />
 
       <motion.div

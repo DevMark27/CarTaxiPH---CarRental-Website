@@ -66,11 +66,12 @@ export function TestimonialsSection() {
               key={item.title}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={prefersReducedMotion ? undefined : { y: -5 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: i * 0.08, ease }}
-              className="rounded-2xl border border-line bg-mist/40 p-7"
+              className="group rounded-2xl border border-line bg-mist/40 p-7 transition-colors duration-300 hover:border-brand/40 hover:bg-white hover:shadow-[0_20px_48px_-24px_rgba(17,17,17,0.18)]"
             >
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-charcoal text-white">
+              <span className="grid h-10 w-10 place-items-center rounded-xl bg-charcoal text-white transition-colors duration-300 group-hover:bg-brand">
                 {i === 0 ? <ShieldIcon width={19} height={19} /> : <CheckIcon width={19} height={19} />}
               </span>
               <h3 className="mt-5 text-lg font-semibold text-charcoal">{item.title}</h3>

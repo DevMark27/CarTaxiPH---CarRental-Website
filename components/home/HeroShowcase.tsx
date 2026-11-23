@@ -44,20 +44,18 @@ const heroFeatures = [
 
 export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const vehicle = vehicles[selectedIndex] ?? vehicles[0];
 
   useEffect(() => {
-    if (vehicles.length <= 1 || paused) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (vehicles.length <= 1 || prefersReducedMotion) return;
 
     const timer = window.setInterval(() => {
       setSelectedIndex((prev) => (prev + 1) % vehicles.length);
-    }, 5000);
+    }, 4000);
     return () => window.clearInterval(timer);
-  }, [vehicles.length, paused]);
+  }, [vehicles.length, prefersReducedMotion]);
 
   // Subtle desktop cursor parallax for the hero vehicle
   const rawX = useMotionValue(0);
@@ -74,14 +72,12 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
   }
 
   function handleMouseLeave() {
-    setPaused(false);
     rawX.set(0);
     rawY.set(0);
   }
 
   return (
     <section
-      onMouseEnter={() => setPaused(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="relative overflow-hidden bg-white text-charcoal"
