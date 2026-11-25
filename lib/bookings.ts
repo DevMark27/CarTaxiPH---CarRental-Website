@@ -61,7 +61,9 @@ export type BookingRecord = {
   adminNotes?: string;
 };
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = process.env.VERCEL
+  ? path.join("/tmp", "cartaxi-data")
+  : path.join(process.cwd(), "data");
 const BOOKINGS_FILE = path.join(DATA_DIR, "bookings.json");
 export const PRIVATE_UPLOADS_DIR = path.join(DATA_DIR, "uploads");
 
@@ -72,8 +74,8 @@ function ensureStorage() {
 }
 
 export function readBookings(): BookingRecord[] {
-  ensureStorage();
   try {
+    ensureStorage();
     const raw = fs.readFileSync(BOOKINGS_FILE, "utf8");
     const parsed = JSON.parse(raw);
     return Array.isArray(parsed) ? (parsed as BookingRecord[]) : [];
@@ -155,10 +157,64 @@ export function checkVehicleAvailabilityForPeriod(
   return { available: true };
 }
 
+export const ADMIN_COOKIE_NAME = "cartaxi_admin_session";
+
+function getAdminSecret(): string | null {
+  const envPass = process.env.ADMIN_PASSCODE;
+  if (envPass && envPass.length >= 8) return envPass;
+  // Fail closed in production if ADMIN_PASSCODE is not configured
+  if (process.env.NODE_ENV === "production") return null;
+  return "cartaxi-admin-2026";
+}
+
+function timingSafeEqualStr(a: string, b: string): boolean {
+  const bufA = Buffer.from(a, "utf8");
+  const bufB = Buffer.from(b, "utf8");
+  if (bufA.length !== bufB.length) return false;
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
+export function verifyAdminPasscode(passcode: string): boolean {
+  const secret = getAdminSecret();
+  if (!secret || !passcode) return false;
+  return timingSafeEqualStr(passcode, secret);
+}
+
+export function createAdminSessionToken(): string | null {
+  const secret = getAdminSecret();
+  if (!secret) return null;
+  const expiresAt = Date.now() + 8 * 60 * 60 * 1000; // 8 hours
+  const payload = String(expiresAt);
+  const sig = crypto.createHmac("sha256", secret).update(payload).digest("hex");
+  return `${payload}.${sig}`;
+}
+
+export function verifyAdminSessionToken(token: string): boolean {
+  const secret = getAdminSecret();
+  if (!secret || !token) return false;
+  const parts = token.split(".");
+  if (parts.length !== 2) return false;
+  const [payload, sig] = parts;
+  const expiresAt = Number(payload);
+  if (!Number.isFinite(expiresAt) || expiresAt < Date.now()) return false;
+  const expectedSig = crypto.createHmac("sha256", secret).update(payload).digest("hex");
+  return timingSafeEqualStr(sig, expectedSig);
+}
+
+function parseCookie(cookieHeader: string | null, name: string): string {
+  if (!cookieHeader) return "";
+  const match = cookieHeader
+    .split(";")
+    .map((c) => c.trim())
+    .find((c) => c.startsWith(`${name}=`));
+  return match ? decodeURIComponent(match.slice(name.length + 1)) : "";
+}
+
 export function isAdminAuthorized(request: Request): boolean {
-  const expected = process.env.ADMIN_PASSCODE || "cartaxi-admin-2026";
-  const provided = request.headers.get("x-admin-passcode") || "";
-  if (provided === expected) return true;
-  const url = new URL(request.url);
-  return url.searchParams.get("passcode") === expected;
+  const cookieToken = parseCookie(request.headers.get("cookie"), ADMIN_COOKIE_NAME);
+  if (cookieToken && verifyAdminSessionToken(cookieToken)) {
+    return true;
+  }
+  const headerPass = request.headers.get("x-admin-passcode") || "";
+  return verifyAdminPasscode(headerPass);
 }

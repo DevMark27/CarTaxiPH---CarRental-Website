@@ -5,6 +5,7 @@ import {
   writeBookings,
   type BookingStatus,
 } from "@/lib/bookings";
+import { sendClientBookingApprovedEmail } from "@/lib/email";
 
 const VALID_STATUSES = new Set<BookingStatus>([
   "PENDING ADMIN CONFIRMATION",
@@ -56,6 +57,22 @@ export async function PATCH(
 
   bookings[idx] = updated;
   writeBookings(bookings);
+
+  if (current.status !== "CONFIRMED" && updated.status === "CONFIRMED") {
+    await sendClientBookingApprovedEmail({
+      referenceNumber: updated.referenceNumber,
+      vehicleName: updated.vehicleName,
+      pickupLocation: updated.pickupLocation,
+      dropoffLocation: updated.dropoffLocation,
+      pickupDate: updated.pickupDate,
+      pickupTime: updated.pickupTime,
+      returnDate: updated.returnDate,
+      returnTime: updated.returnTime,
+      durationDays: updated.durationDays,
+      customerName: updated.customer.fullName,
+      customerEmail: updated.customer.email,
+    });
+  }
 
   return NextResponse.json({ booking: updated });
 }

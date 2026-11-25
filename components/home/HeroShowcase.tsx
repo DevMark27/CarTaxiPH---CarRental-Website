@@ -89,7 +89,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
           <div className="absolute inset-0 bg-gradient-to-br from-white via-mist/70 to-white" />
           <div className="absolute inset-y-0 right-0 w-full opacity-20 lg:w-[68%] lg:opacity-30">
             <Image
-              src="/images/scenes/hero.jpg"
+              src="/images/scenes/Background.jpg"
               alt=""
               fill
               loading="eager"
@@ -114,7 +114,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               transition={{ duration: 0.45, ease }}
               className="text-xs font-semibold uppercase tracking-[0.22em] text-muted"
             >
-              Premium Car Rental Service
+              24/7 Anytime. Anywhere. Ready to go
             </motion.p>
 
             <h1 className="mt-4 text-4xl font-bold leading-[1.06] tracking-tight text-ink sm:text-5xl xl:text-[3.4rem]">
@@ -226,7 +226,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
                     className="relative aspect-[4/3] w-full"
                   >
                     <Image
-                      src={`/images/vehicles/${vehicle.slug}-hero.png`}
+                      src={vehicle.heroImage ?? `/images/vehicles/${vehicle.slug}-hero.png`}
                       alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}, front three-quarter view`}
                       fill
                       preload

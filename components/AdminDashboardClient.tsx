@@ -26,15 +26,11 @@ export function AdminDashboardClient() {
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
 
-  async function fetchBookings(code: string) {
+  async function fetchBookings() {
     setLoading(true);
-    setAuthError("");
     try {
-      const res = await fetch("/api/bookings", {
-        headers: { "x-admin-passcode": code },
-      });
+      const res = await fetch("/api/bookings");
       if (!res.ok) {
-        setAuthError("Invalid administrator passcode.");
         setAuthenticated(false);
         return;
       }
@@ -48,9 +44,36 @@ export function AdminDashboardClient() {
     }
   }
 
-  function handleLogin(e: FormEvent) {
+  async function handleLogin(e: FormEvent) {
     e.preventDefault();
-    fetchBookings(passcode);
+    setLoading(true);
+    setAuthError("");
+    try {
+      const res = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setAuthError(data.error || "Invalid administrator passcode.");
+        setAuthenticated(false);
+        return;
+      }
+      setPasscode("");
+      await fetchBookings();
+    } catch {
+      setAuthError("Unable to verify passcode.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function handleLogout() {
+    await fetch("/api/admin/logout", { method: "POST" });
+    setAuthenticated(false);
+    setBookings([]);
+    setSelected(null);
   }
 
   function openBooking(b: BookingRecord) {
@@ -72,7 +95,6 @@ export function AdminDashboardClient() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-passcode": passcode,
         },
         body: JSON.stringify({
           status: targetStatus,
@@ -139,13 +161,22 @@ export function AdminDashboardClient() {
           <h2 className="text-lg font-semibold text-ink">
             Submitted Reservations ({bookings.length})
           </h2>
-          <button
-            type="button"
-            onClick={() => fetchBookings(passcode)}
-            className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-ink hover:border-ink"
-          >
-            Refresh
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => fetchBookings()}
+              className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-ink hover:border-ink"
+            >
+              Refresh
+            </button>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-muted hover:border-brand hover:text-brand"
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
 
         {bookings.length === 0 ? (
@@ -227,7 +258,7 @@ export function AdminDashboardClient() {
                   .map(({ label, doc }) => (
                     <a
                       key={doc.id}
-                      href={`/api/uploads/${doc.storedName}?passcode=${encodeURIComponent(passcode)}`}
+                      href={`/api/uploads/${doc.storedName}`}
                       target="_blank"
                       rel="noreferrer"
                       className="rounded-full border border-line bg-mist/60 px-3.5 py-1.5 text-xs font-semibold text-ink hover:border-brand hover:text-brand"

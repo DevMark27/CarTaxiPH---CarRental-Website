@@ -117,7 +117,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
   const [dropoff, setDropoff] = useState(params.get("dropoff") ?? params.get("pickup") ?? site.pickupLocations[0]);
   const [start, setStart] = useState(params.get("start") ?? "");
   const [startTime, setStartTime] = useState(params.get("startTime") ?? "09:00");
-  const [durationDays, setDurationDays] = useState(1);
+  const durationDays = 1;
   const [passengers, setPassengers] = useState(1);
   const [showNotes, setShowNotes] = useState(false);
   const [tripNotes, setTripNotes] = useState("");
@@ -217,7 +217,10 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
             pickupTime: startTime,
             durationDays: String(durationDays),
           });
-          const res = await fetch(`/api/bookings?${q.toString()}`);
+          const res = await fetch(`/api/bookings?${q.toString()}`, { cache: "no-store" });
+          if (!res.ok) {
+            throw new Error(`Availability check failed (${res.status})`);
+          }
           const data = await res.json();
           if (!data.available) {
             nextErrors.availability =
@@ -915,37 +918,6 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   </label>
 
                   <div className={labelCls}>
-                    <span>Rental duration *</span>
-                    <div className="mt-1.5 flex h-11 items-center justify-between rounded-lg border border-line bg-white px-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setDurationDays((d) => Math.max(1, d - 1));
-                          clearError("availability");
-                        }}
-                        aria-label="Decrease rental days"
-                        className="grid h-7 w-7 place-items-center rounded bg-mist text-sm font-bold text-ink hover:bg-line"
-                      >
-                        −
-                      </button>
-                      <span className="text-sm font-semibold text-ink">
-                        {durationDays} {durationDays === 1 ? "day" : "days"}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setDurationDays((d) => Math.min(30, d + 1));
-                          clearError("availability");
-                        }}
-                        aria-label="Increase rental days"
-                        className="grid h-7 w-7 place-items-center rounded bg-mist text-sm font-bold text-ink hover:bg-line"
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className={labelCls}>
                     <span>Number of passengers *</span>
                     <div className="mt-1.5 flex h-11 items-center justify-between rounded-lg border border-line bg-white px-3">
                       <button
@@ -1391,7 +1363,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       <div><dt className="text-xs text-muted">Pick-up</dt><dd className="font-medium text-ink">{pickup}</dd></div>
                       <div><dt className="text-xs text-muted">Drop-off</dt><dd className="font-medium text-ink">{dropoff}</dd></div>
                       <div><dt className="text-xs text-muted">Schedule</dt><dd className="font-medium text-ink">{start} · {startTime}</dd></div>
-                      <div><dt className="text-xs text-muted">Duration & Guests</dt><dd className="font-medium text-ink">{durationDays} {durationDays === 1 ? "day" : "days"} · {passengers} {passengers === 1 ? "passenger" : "passengers"}</dd></div>
+                      <div><dt className="text-xs text-muted">Passengers</dt><dd className="font-medium text-ink">{passengers} {passengers === 1 ? "passenger" : "passengers"}</dd></div>
                     </dl>
                   </div>
 
@@ -1485,7 +1457,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   </div>
                   <div className="flex justify-between gap-4 py-3">
                     <dt className="text-muted">Schedule</dt>
-                    <dd className="font-medium text-ink">{start} · {startTime} ({durationDays} {durationDays === 1 ? "day" : "days"})</dd>
+                    <dd className="font-medium text-ink">{start} · {startTime}</dd>
                   </div>
                   <div className="flex justify-between gap-4 py-3">
                     <dt className="text-muted">Renter</dt>
@@ -1592,10 +1564,6 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                 <div className="flex justify-between gap-3">
                   <dt className="text-muted">Schedule</dt>
                   <dd className="font-medium text-ink">{start ? `${start} · ${startTime}` : "—"}</dd>
-                </div>
-                <div className="flex justify-between gap-3">
-                  <dt className="text-muted">Duration</dt>
-                  <dd className="font-medium text-ink">{durationDays} {durationDays === 1 ? "day" : "days"}</dd>
                 </div>
                 <div className="flex justify-between gap-3 border-t border-line pt-3">
                   <dt className="font-semibold text-ink">Quote</dt>

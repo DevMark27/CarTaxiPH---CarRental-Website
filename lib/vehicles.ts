@@ -64,6 +64,8 @@ export type Vehicle = {
   summary: string;
   /** Exterior photos. The first image is used as the card / cover photo. */
   images: { src: string; alt: string }[];
+  /** Optional custom hero cutout path (overrides /images/vehicles/<slug>-hero.png). */
+  heroImage?: string;
   featured?: boolean;
   /** Whether the unit is currently available for booking (defaults to true). */
   available?: boolean;
@@ -98,11 +100,12 @@ export const vehicles: Vehicle[] = [
     price: 2500,
     priceUnit: "day",
     luggage: "2–3 large bags",
-    color: "Gray Metallic",
+    color: "Silver Metallic",
     idealFor: ["City driving", "Weekend getaways", "Airport transfers"],
     summary:
       "A nimble, fuel-efficient 5-seat crossover SUV built for Metro Manila streets and weekend escapes—easy to park with raised ground clearance.",
-    images: gallery("toyota-raize", "Toyota Raize", "Gray"),
+    images: [{ src: "/images/vehicles/toyota-raize-silver-1.jpg", alt: "Silver Toyota Raize, front three-quarter view" }],
+    heroImage: "/images/vehicles/toyota-raize-silver-hero.png",
     featured: true,
   },
   {

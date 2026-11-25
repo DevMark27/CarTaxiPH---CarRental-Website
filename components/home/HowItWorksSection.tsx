@@ -28,7 +28,7 @@ const steps = [
     description: "Share your pick-up schedule, route, and ID in our 5-step guided wizard.",
     tip: "Every rental includes a professional driver. Submit your booking with zero upfront payment required.",
     ctaLabel: "Start Reservation",
-    ctaHref: "/#reserve",
+    ctaHref: "/book",
     external: false,
   },
   {

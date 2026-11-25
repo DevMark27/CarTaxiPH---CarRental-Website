@@ -61,7 +61,7 @@ export function MadeForEveryJourneySection() {
             </p>
           </div>
           <Link
-            href="/#reserve"
+            href="/book"
             className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition hover:border-brand hover:bg-brand hover:text-white sm:self-auto"
           >
             Start Booking
