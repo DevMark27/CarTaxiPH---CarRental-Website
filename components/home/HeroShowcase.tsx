@@ -87,17 +87,17 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
         {/* Bright scenic backdrop fading cleanly into white on the left */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-white via-mist/70 to-white" />
-          <div className="absolute inset-y-0 right-0 w-full opacity-20 lg:w-[68%] lg:opacity-30">
+          <div className="absolute inset-0 opacity-50">
             <Image
               src="/images/scenes/Background.jpg"
               alt=""
               fill
               loading="eager"
-              sizes="70vw"
+              sizes="100vw"
               className="object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/75" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/75 via-white/35 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-white/50" />
           </div>
           {/* Subtle brand red ambient glow behind vehicle */}
           <div className="absolute right-[18%] top-[22%] h-72 w-96 rounded-full bg-brand/10 blur-[110px]" />
@@ -112,7 +112,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease }}
-              className="text-xs font-semibold uppercase tracking-[0.22em] text-muted"
+              className="text-xs font-bold uppercase tracking-[0.22em] text-charcoal/80"
             >
               24/7 Anytime. Anywhere. Ready to go
             </motion.p>
@@ -140,7 +140,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.22, ease }}
-              className="mt-5 max-w-md text-base leading-7 text-muted sm:text-[17px]"
+              className="mt-5 max-w-md text-base font-medium leading-7 text-ink/85 sm:text-[17px]"
             >
               From family vacations and weekend getaways to group adventures and business trips, enjoy comfortable rides
               and a booking experience made simple.
@@ -175,7 +175,7 @@ export function HeroShowcase({ vehicles }: { vehicles: Vehicle[] }) {
               transition={{ duration: 0.45, delay: 0.38, ease }}
               className="mt-9"
             >
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-charcoal/80">
                 Featured Fleet · {vehicle.year} {vehicle.category}
               </p>
               <div className="mt-2.5 flex flex-wrap gap-1.5" role="tablist" aria-label="Featured hero vehicle">
