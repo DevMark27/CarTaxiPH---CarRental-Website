@@ -5,7 +5,7 @@ import {
   writeBookings,
   type BookingStatus,
 } from "@/lib/bookings";
-import { sendClientBookingApprovedEmail } from "@/lib/email";
+import { sendClientBookingApprovedEmail, sendClientBookingRejectedEmail } from "@/lib/email";
 
 const VALID_STATUSES = new Set<BookingStatus>([
   "PENDING ADMIN CONFIRMATION",
@@ -71,6 +71,17 @@ export async function PATCH(
       durationDays: updated.durationDays,
       customerName: updated.customer.fullName,
       customerEmail: updated.customer.email,
+    });
+  } else if (current.status !== "REJECTED" && updated.status === "REJECTED") {
+    const origin = process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin;
+    await sendClientBookingRejectedEmail({
+      referenceNumber: updated.referenceNumber,
+      vehicleName: updated.vehicleName,
+      pickupDate: updated.pickupDate,
+      pickupTime: updated.pickupTime,
+      customerName: updated.customer.fullName,
+      customerEmail: updated.customer.email,
+      siteUrl: origin,
     });
   }
 

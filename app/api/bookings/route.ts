@@ -9,7 +9,7 @@ import {
   writeBookings,
   type BookingRecord,
 } from "@/lib/bookings";
-import { sendOwnerBookingNotification } from "@/lib/email";
+import { sendClientBookingReceivedEmail, sendOwnerBookingNotification } from "@/lib/email";
 import { checkRateLimit, getClientIp } from "@/lib/rate-limit";
 import { getVehicle, vehicleName } from "@/lib/vehicles";
 
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     const customer = body.customer ?? {};
     const fullName = String(customer.fullName || "").trim().slice(0, 120);
     const email = String(customer.email || "").trim().slice(0, 160);
-    const mobile = String(customer.mobile || "").trim().slice(0, 30);
+    const mobile = String(customer.mobile || "").replace(/\D/g, "").slice(0, 11);
     const address = String(customer.address || "").trim().slice(0, 300);
 
     const identification = body.identification ?? {};
@@ -90,8 +90,8 @@ export async function POST(request: Request) {
     if (!pickupLocation || !dropoffLocation || !pickupDate || !pickupTime) {
       return NextResponse.json({ error: "All trip schedule fields are required." }, { status: 400 });
     }
-    if (!fullName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !mobile || !address) {
-      return NextResponse.json({ error: "Valid personal information fields are required." }, { status: 400 });
+    if (!fullName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || mobile.length !== 11 || !address) {
+      return NextResponse.json({ error: "Valid personal information fields (including an 11-digit mobile number) are required." }, { status: 400 });
     }
     if (!idType || !frontDoc?.storedName || !SAFE_STORED_NAME.test(String(frontDoc.storedName))) {
       return NextResponse.json({ error: "Valid mandatory front identification document is required." }, { status: 400 });
@@ -178,7 +178,20 @@ export async function POST(request: Request) {
     const origin =
       process.env.NEXT_PUBLIC_SITE_URL ||
       new URL(request.url).origin;
-    await sendOwnerBookingNotification(newBooking, origin);
+
+    await Promise.allSettled([
+      sendOwnerBookingNotification(newBooking, origin),
+      sendClientBookingReceivedEmail({
+        referenceNumber: newBooking.referenceNumber,
+        vehicleName: newBooking.vehicleName,
+        pickupLocation: newBooking.pickupLocation,
+        dropoffLocation: newBooking.dropoffLocation,
+        pickupDate: newBooking.pickupDate,
+        pickupTime: newBooking.pickupTime,
+        customerName: newBooking.customer.fullName,
+        customerEmail: newBooking.customer.email,
+      }),
+    ]);
 
     return NextResponse.json({ booking: newBooking }, { status: 201 });
   } catch {

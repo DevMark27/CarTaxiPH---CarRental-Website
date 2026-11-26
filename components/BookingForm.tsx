@@ -239,8 +239,8 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
         nextErrors.email = "Please enter a valid email address (e.g. juan@example.com).";
       }
-      if (mobile.replace(/\D/g, "").length < 10) {
-        nextErrors.mobile = "Please enter a valid mobile number (e.g. 0917 123 4567).";
+      if (mobile.replace(/\D/g, "").length !== 11) {
+        nextErrors.mobile = "Please enter a valid 11-digit mobile number (e.g. 09171234567).";
       }
       if (!address.trim()) nextErrors.address = "Please enter your residential address.";
     }
@@ -1084,12 +1084,16 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                     <input
                       required
                       type="tel"
+                      inputMode="numeric"
                       name="mobile"
                       autoComplete="tel"
-                      placeholder="e.g. 0917 123 4567"
+                      maxLength={11}
+                      pattern="[0-9]{11}"
+                      placeholder="e.g. 09171234567"
                       value={mobile}
                       onChange={(e) => {
-                        setMobile(e.target.value);
+                        const digitsOnly = e.target.value.replace(/\D/g, "").slice(0, 11);
+                        setMobile(digitsOnly);
                         clearError("mobile");
                       }}
                       className={`${inputCls} ${errors.mobile ? "border-error" : ""}`}
