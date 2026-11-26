@@ -70,7 +70,7 @@ export function QuickBookingBar() {
       {/* Top Header Row */}
       <div className="flex flex-col justify-between gap-4 border-b border-line pb-5 sm:flex-row sm:items-center">
         <div>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-brand">Quick Reservation</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">Quick Reservation</p>
           <h2 className="mt-1 text-xl font-semibold tracking-tight text-ink sm:text-2xl">
             Search available vehicles for your route
           </h2>
@@ -132,7 +132,7 @@ export function QuickBookingBar() {
           <div className="grid items-end gap-2 sm:grid-cols-[1fr_auto_1fr]">
             <label className="block">
               <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-charcoal">
-                <PinIcon width={14} height={14} className="text-brand" /> Pick-up Location
+                <PinIcon width={14} height={14} className="text-charcoal/70" /> Pick-up Location
               </span>
               <input
                 type="text"
@@ -155,7 +155,7 @@ export function QuickBookingBar() {
                 onClick={swapLocations}
                 aria-label="Swap pick-up and drop-off locations"
                 title="Swap locations"
-                className="grid h-9 w-9 place-items-center rounded-full border border-line bg-white text-xs font-bold text-charcoal shadow-xs transition-all duration-200 hover:scale-105 hover:border-brand hover:text-brand"
+                className="grid h-9 w-9 place-items-center rounded-full border border-line bg-white text-xs font-bold text-charcoal shadow-xs transition-all duration-200 hover:scale-105 hover:border-ink hover:text-ink"
               >
                 ⇄
               </button>
@@ -184,7 +184,7 @@ export function QuickBookingBar() {
 
         <label className="block lg:col-span-2">
           <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-charcoal">
-            <CalendarIcon width={14} height={14} className="text-brand" /> Pick-up Date
+            <CalendarIcon width={14} height={14} className="text-charcoal/70" /> Pick-up Date
           </span>
           <input
             type="date"
@@ -200,7 +200,7 @@ export function QuickBookingBar() {
 
         <label className="block lg:col-span-2">
           <span className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-charcoal">
-            <ClockIcon width={14} height={14} className="text-brand" /> Pick-up Time
+            <ClockIcon width={14} height={14} className="text-charcoal/70" /> Pick-up Time
           </span>
           <input
             type="time"
@@ -226,7 +226,7 @@ export function QuickBookingBar() {
       </div>
 
       {error && (
-        <p role="alert" className="mt-4 text-xs font-medium text-brand">
+        <p role="alert" className="mt-4 text-xs font-medium text-error">
           {error}
         </p>
       )}

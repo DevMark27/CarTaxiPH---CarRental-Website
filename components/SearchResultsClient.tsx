@@ -115,7 +115,7 @@ export function SearchResultsClient() {
         <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
           <div className="grid gap-4 sm:grid-cols-2 lg:flex lg:flex-wrap lg:items-center lg:gap-8">
             <div className="flex items-start gap-2.5">
-              <PinIcon width={17} height={17} className="mt-0.5 shrink-0 text-brand" />
+              <PinIcon width={17} height={17} className="mt-0.5 shrink-0 text-charcoal/70" />
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">Pick-up Location</p>
                 <p className="text-sm font-semibold text-ink">{pickup}</p>
@@ -131,7 +131,7 @@ export function SearchResultsClient() {
             </div>
 
             <div className="flex items-start gap-2.5">
-              <CalendarIcon width={17} height={17} className="mt-0.5 shrink-0 text-brand" />
+              <CalendarIcon width={17} height={17} className="mt-0.5 shrink-0 text-charcoal/70" />
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-wider text-muted">Pick-up Date & Time</p>
                 <p className="text-sm font-semibold text-ink">
@@ -148,7 +148,7 @@ export function SearchResultsClient() {
             <button
               type="button"
               onClick={() => setEditing((v) => !v)}
-              className="rounded-full border border-charcoal/25 px-4 py-2 text-xs font-semibold text-charcoal transition-colors hover:border-brand hover:text-brand"
+              className="rounded-full border border-charcoal/25 px-4 py-2 text-xs font-semibold text-charcoal transition-colors hover:border-ink hover:text-ink"
             >
               {editing ? "Close" : "Edit Search"}
             </button>
@@ -212,7 +212,7 @@ export function SearchResultsClient() {
                 />
               </label>
             </div>
-            {editError && <p className="mt-3 text-xs font-medium text-brand">{editError}</p>}
+            {editError && <p className="mt-3 text-xs font-medium text-error">{editError}</p>}
             <div className="mt-4 flex justify-end">
               <button
                 type="submit"
@@ -240,7 +240,7 @@ export function SearchResultsClient() {
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs font-semibold text-brand hover:underline"
+              className="text-xs font-semibold text-ink underline-offset-4 hover:underline"
             >
               Reset all filters
             </button>
@@ -359,16 +359,16 @@ export function SearchResultsClient() {
 
                   <ul className="mt-4 grid grid-cols-2 gap-2.5 border-y border-line py-4 text-xs font-medium text-ink/85">
                     <li className="flex items-center gap-1.5">
-                      <GearIcon width={15} height={15} className="shrink-0 text-brand" />
+                      <GearIcon width={15} height={15} className="shrink-0 text-charcoal/70" />
                       {v.transmission}
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <UsersIcon width={15} height={15} className="shrink-0 text-brand" />
+                      <UsersIcon width={15} height={15} className="shrink-0 text-charcoal/70" />
                       {v.passengers} Passengers
                     </li>
                     {ac && (
                       <li className="col-span-2 flex items-center gap-1.5">
-                        <SunIcon width={15} height={15} className="shrink-0 text-brand" />
+                        <SunIcon width={15} height={15} className="shrink-0 text-charcoal/70" />
                         Air-Conditioned Cabin
                       </li>
                     )}

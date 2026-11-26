@@ -33,7 +33,7 @@ export default function BookPage() {
 
       <div className="mx-auto max-w-6xl px-5 py-8 sm:px-8 sm:py-10">
         <Suspense fallback={<div className="h-96 animate-pulse rounded-xl bg-white" />}>
-          <BookingForm />
+          <BookingForm defaultVehicleSlug="toyota-raize" />
         </Suspense>
       </div>
     </div>

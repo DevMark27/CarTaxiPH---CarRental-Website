@@ -196,7 +196,7 @@ async function VehicleDetails({
             <ul className="mt-4 space-y-3 text-sm text-ink/80">
               {inclusions.map((i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-brand" />
+                  <CheckIcon width={18} height={18} className="mt-0.5 shrink-0 text-emerald-600" />
                   {i}
                 </li>
               ))}
@@ -223,7 +223,7 @@ async function VehicleDetails({
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
               {related.length > 0 ? `More ${v.category} options` : "You may also like"}
             </h2>
-            <Link href="/#fleet" className="text-sm font-semibold text-ink hover:text-brand">View all</Link>
+            <Link href="/#fleet" className="text-sm font-semibold text-ink underline-offset-4 hover:underline">View all</Link>
           </div>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
             {others.map((o) => (

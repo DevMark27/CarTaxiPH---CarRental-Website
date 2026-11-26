@@ -11,7 +11,7 @@ function escapeHtml(value: string): string {
 }
 
 function renderHtmlPage(title: string, heading: string, message: string, isError = false) {
-  const accent = isError ? "#e31824" : "#16a34a";
+  const accent = isError ? "#DC2626" : "#16A34A";
   return new Response(
     `<!DOCTYPE html>
 <html lang="en">
@@ -28,7 +28,7 @@ function renderHtmlPage(title: string, heading: string, message: string, isError
     </div>
     <div style="padding:24px;">
       <p style="margin:0 0 20px;font-size:15px;line-height:1.6;">${escapeHtml(message)}</p>
-      <a href="/admin" style="display:inline-block;background:#151515;color:#ffffff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;">Go to Admin Dashboard</a>
+      <a href="/admin" style="display:inline-block;background:#2563EB;color:#ffffff;text-decoration:none;font-size:13px;font-weight:600;padding:10px 18px;border-radius:999px;">Go to Admin Dashboard</a>
     </div>
   </div>
 </body>

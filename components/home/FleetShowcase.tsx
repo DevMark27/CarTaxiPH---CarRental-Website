@@ -61,7 +61,7 @@ export function FleetShowcase() {
           className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
         >
           <div>
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="inline-block h-0.5 w-6 bg-brand" />
               Our Vehicles
             </p>
@@ -75,7 +75,7 @@ export function FleetShowcase() {
 
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition-all duration-200 hover:border-brand hover:bg-brand hover:text-white lg:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition-all duration-200 hover:border-ink hover:bg-ink hover:text-white lg:self-auto"
           >
             Reserve Now
             <ArrowRightIcon width={14} height={14} />
@@ -150,7 +150,7 @@ export function FleetShowcase() {
 
                 <div className="flex flex-1 flex-col p-6">
                   <div className="flex items-baseline justify-between gap-3">
-                    <Link href={`/fleet/${v.slug}`} className="text-xl font-semibold tracking-tight text-charcoal hover:text-brand">
+                    <Link href={`/fleet/${v.slug}`} className="text-xl font-semibold tracking-tight text-charcoal hover:text-ink">
                       {vehicleName(v)}
                     </Link>
                     <span className="text-xs font-medium text-muted">{v.year}</span>
@@ -159,11 +159,11 @@ export function FleetShowcase() {
 
                   <div className="mt-5 grid grid-cols-2 gap-3 border-y border-line py-3.5 text-xs font-medium text-charcoal/85">
                     <span className="flex items-center gap-2">
-                      <UsersIcon width={15} height={15} className="text-brand" />
+                      <UsersIcon width={15} height={15} className="text-charcoal/70" />
                       {v.passengers} Passengers
                     </span>
                     <span className="flex items-center gap-2">
-                      <GearIcon width={15} height={15} className="text-brand" />
+                      <GearIcon width={15} height={15} className="text-charcoal/70" />
                       {v.transmission}
                     </span>
                   </div>
@@ -208,7 +208,7 @@ export function FleetShowcase() {
           >
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-brand">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted">
                   Compare ({comparedVehicles.length}/3):
                 </span>
                 {comparedVehicles.map((cv) => (
@@ -312,10 +312,10 @@ export function FleetShowcase() {
                   <p className="mt-3 text-sm leading-6 text-charcoal/80">{quickView.summary}</p>
 
                   <dl className="mt-5 grid grid-cols-2 gap-3 border-y border-line py-4 text-xs">
-                    <div className="flex items-center gap-2"><UsersIcon width={14} height={14} className="text-brand" /> {quickView.passengers} Seats</div>
-                    <div className="flex items-center gap-2"><GearIcon width={14} height={14} className="text-brand" /> {quickView.transmission}</div>
-                    <div className="flex items-center gap-2"><FuelIcon width={14} height={14} className="text-brand" /> {quickView.fuel}</div>
-                    <div className="flex items-center gap-2"><BagIcon width={14} height={14} className="text-brand" /> {quickView.luggage}</div>
+                    <div className="flex items-center gap-2"><UsersIcon width={14} height={14} className="text-charcoal/70" /> {quickView.passengers} Seats</div>
+                    <div className="flex items-center gap-2"><GearIcon width={14} height={14} className="text-charcoal/70" /> {quickView.transmission}</div>
+                    <div className="flex items-center gap-2"><FuelIcon width={14} height={14} className="text-charcoal/70" /> {quickView.fuel}</div>
+                    <div className="flex items-center gap-2"><BagIcon width={14} height={14} className="text-charcoal/70" /> {quickView.luggage}</div>
                   </dl>
                 </div>
 

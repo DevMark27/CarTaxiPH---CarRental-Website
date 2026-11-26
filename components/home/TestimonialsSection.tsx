@@ -61,7 +61,7 @@ export function TestimonialsSection() {
           className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"
         >
           <div className="max-w-2xl">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="inline-block h-0.5 w-6 bg-brand" />
               Customer Trust
             </p>
@@ -85,7 +85,7 @@ export function TestimonialsSection() {
             href={site.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition hover:border-brand hover:bg-brand hover:text-white lg:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition hover:border-ink hover:bg-ink hover:text-white lg:self-auto"
           >
             Ask Us on WhatsApp
             <ArrowRightIcon width={14} height={14} />
@@ -102,10 +102,10 @@ export function TestimonialsSection() {
                 whileHover={prefersReducedMotion ? undefined : { y: -5 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: i * 0.06, ease }}
-                className="flex flex-col justify-between rounded-2xl border border-line bg-mist/30 p-7 transition-colors hover:border-brand/40 hover:bg-white"
+                className="flex flex-col justify-between rounded-2xl border border-line bg-mist/30 p-7 transition-colors hover:border-charcoal/30 hover:bg-white"
               >
                 <div>
-                  <p className="text-sm font-bold text-brand" aria-label={`${rev.rating} out of 5 stars`}>
+                  <p className="text-sm font-bold text-amber-500" aria-label={`${rev.rating} out of 5 stars`}>
                     {"★".repeat(Math.max(1, Math.min(5, Math.round(rev.rating))))}
                   </p>
                   <blockquote className="mt-3 text-sm leading-6 text-charcoal/85">
@@ -129,7 +129,7 @@ export function TestimonialsSection() {
                 whileHover={prefersReducedMotion ? undefined : { y: -5 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease }}
-                className="group rounded-2xl border border-line bg-mist/40 p-7 transition-colors duration-300 hover:border-brand/40 hover:bg-white hover:shadow-[0_20px_48px_-24px_rgba(17,17,17,0.18)]"
+                className="group rounded-2xl border border-line bg-mist/40 p-7 transition-colors duration-300 hover:border-charcoal/30 hover:bg-white hover:shadow-[0_20px_48px_-24px_rgba(17,17,17,0.18)]"
               >
                 <span className="grid h-10 w-10 place-items-center rounded-xl bg-charcoal text-white transition-colors duration-300 group-hover:bg-brand">
                   {i === 0 ? <ShieldIcon width={19} height={19} /> : <CheckIcon width={19} height={19} />}
@@ -147,7 +147,7 @@ export function TestimonialsSection() {
               ? "Verified customer feedback powered by Google Reviews."
               : "Google Reviews feed ready to connect when GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID are set."}
           </span>
-          <Link href="/book" className="font-semibold text-brand hover:underline">
+          <Link href="/book" className="font-semibold text-ink underline underline-offset-4 hover:text-brand">
             Start a reservation →
           </Link>
         </div>

@@ -172,18 +172,18 @@ export async function sendOwnerBookingNotification(
   const html = `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;color:#18181b;background:#ffffff;border:1px solid #e4e4e7;border-radius:12px;overflow:hidden;">
     <div style="background:#151515;color:#ffffff;padding:24px 28px;">
-      <p style="margin:0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#e31824;font-weight:700;">New Booking Request</p>
-      <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3;">${escapeHtml(booking.vehicleName)}</h1>
+      <p style="margin:0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#a1a1aa;font-weight:700;">New Booking Request</p>
+      <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3;color:#ffffff;">${escapeHtml(booking.vehicleName)}</h1>
       <p style="margin:6px 0 0;font-size:13px;color:#d4d4d8;">Reference: <strong>${escapeHtml(booking.referenceNumber)}</strong></p>
     </div>
 
     <div style="padding:24px 28px;">
-      <p style="margin:0 0 18px;font-size:14px;line-height:1.6;">
+      <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#27272a;">
         A client submitted a new reservation request. Review the details below and click <strong>Accept Booking</strong> to approve and automatically notify the client.
       </p>
 
       <div style="margin:20px 0 26px;text-align:center;">
-        <a href="${escapeHtml(acceptUrl)}" style="display:inline-block;background:#e31824;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 30px;border-radius:999px;">
+        <a href="${escapeHtml(acceptUrl)}" style="display:inline-block;background:#2563EB;color:#ffffff;text-decoration:none;font-weight:700;font-size:15px;padding:14px 30px;border-radius:999px;">
           Accept Booking
         </a>
       </div>
@@ -204,7 +204,7 @@ export async function sendOwnerBookingNotification(
       <h2 style="margin:0 0 10px;font-size:14px;text-transform:uppercase;letter-spacing:0.08em;color:#52525b;border-bottom:1px solid #e4e4e7;padding-bottom:6px;">Client Information</h2>
       <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:20px;">
         <tr><td style="padding:6px 0;color:#71717a;width:160px;">Full Name</td><td style="padding:6px 0;font-weight:600;">${escapeHtml(booking.customer.fullName)}</td></tr>
-        <tr><td style="padding:6px 0;color:#71717a;">Email</td><td style="padding:6px 0;"><a href="mailto:${escapeHtml(booking.customer.email)}" style="color:#e31824;">${escapeHtml(booking.customer.email)}</a></td></tr>
+        <tr><td style="padding:6px 0;color:#71717a;">Email</td><td style="padding:6px 0;"><a href="mailto:${escapeHtml(booking.customer.email)}" style="color:#2563EB;text-decoration:underline;">${escapeHtml(booking.customer.email)}</a></td></tr>
         <tr><td style="padding:6px 0;color:#71717a;">Mobile</td><td style="padding:6px 0;">${escapeHtml(booking.customer.mobile)}</td></tr>
         <tr><td style="padding:6px 0;color:#71717a;">Address</td><td style="padding:6px 0;">${escapeHtml(booking.customer.address)}</td></tr>
         ${booking.customer.emergencyContactName ? `<tr><td style="padding:6px 0;color:#71717a;">Emergency Contact</td><td style="padding:6px 0;">${escapeHtml(booking.customer.emergencyContactName)} (${escapeHtml(booking.customer.emergencyContactNumber)})</td></tr>` : ""}
@@ -213,7 +213,7 @@ export async function sendOwnerBookingNotification(
 
       <p style="margin:0;font-size:12px;color:#71717a;">
         If the button does not work, open this link:<br/>
-        <a href="${escapeHtml(acceptUrl)}" style="color:#e31824;word-break:break-all;">${escapeHtml(acceptUrl)}</a>
+        <a href="${escapeHtml(acceptUrl)}" style="color:#2563EB;word-break:break-all;">${escapeHtml(acceptUrl)}</a>
       </p>
     </div>
   </div>`;
@@ -242,15 +242,18 @@ export async function sendClientBookingApprovedEmail(params: {
   const html = `
   <div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#18181b;background:#ffffff;border:1px solid #e4e4e7;border-radius:12px;overflow:hidden;">
     <div style="background:#151515;color:#ffffff;padding:24px 28px;">
-      <p style="margin:0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#22c55e;font-weight:700;">Booking Approved</p>
-      <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3;">Your reservation is confirmed!</h1>
+      <p style="margin:0;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#16A34A;font-weight:700;">Booking Approved</p>
+      <h1 style="margin:8px 0 0;font-size:22px;line-height:1.3;color:#ffffff;">Your reservation is confirmed!</h1>
       <p style="margin:6px 0 0;font-size:13px;color:#d4d4d8;">Reference: <strong>${escapeHtml(params.referenceNumber)}</strong></p>
     </div>
 
     <div style="padding:24px 28px;">
-      <p style="margin:0 0 16px;font-size:14px;line-height:1.6;">
+      <div style="margin:0 0 16px;">
+        <span style="display:inline-block;background:#DCFCE7;color:#16A34A;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px;letter-spacing:0.04em;text-transform:uppercase;">Status: Confirmed</span>
+      </div>
+      <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#27272a;">
         Hi <strong>${escapeHtml(params.customerName)}</strong>,<br/><br/>
-        Great news! Your booking request with <strong>${escapeHtml(site.name)}</strong> has been <strong>approved</strong>. Below are your confirmed trip details:
+        Great news! Your booking request with <strong>${escapeHtml(site.name)}</strong> has been <strong style="color:#16A34A;">approved</strong>. Below are your confirmed trip details:
       </p>
 
       <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:20px;background:#fafafa;border:1px solid #e4e4e7;border-radius:8px;">

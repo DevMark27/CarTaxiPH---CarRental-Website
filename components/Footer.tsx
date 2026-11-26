@@ -29,7 +29,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/65">
             {quickLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="transition-colors hover:text-brand">
+                <Link href={link.href} className="transition-colors hover:text-white">
                   {link.label}
                 </Link>
               </li>
@@ -43,7 +43,7 @@ export function Footer() {
               <li key={c}>
                 <Link
                   href="/#fleet"
-                  className="inline-block rounded-full border border-white/15 px-3 py-1 transition-colors hover:border-brand hover:text-white"
+                  className="inline-block rounded-full border border-white/15 px-3 py-1 transition-colors hover:border-white/50 hover:text-white"
                 >
                   {c}
                 </Link>
@@ -59,7 +59,7 @@ export function Footer() {
           <ul className="mt-4 grid grid-cols-1 gap-2.5 text-sm text-white/65">
             {vehicles.map((v) => (
               <li key={v.slug}>
-                <Link href={`/fleet/${v.slug}`} className="transition-colors hover:text-brand">
+                <Link href={`/fleet/${v.slug}`} className="transition-colors hover:text-white">
                   {vehicleName(v)}
                 </Link>
               </li>
@@ -73,23 +73,23 @@ export function Footer() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm text-white/65">
             <li className="flex gap-3">
-              <PhoneIcon width={18} height={18} className="mt-0.5 shrink-0 text-brand" />
+              <PhoneIcon width={18} height={18} className="mt-0.5 shrink-0 text-white/70" />
               <a href={site.phoneHref} className="transition-colors hover:text-white">
                 {site.phone}
               </a>
             </li>
             <li className="flex gap-3">
-              <MailIcon width={18} height={18} className="mt-0.5 shrink-0 text-brand" />
+              <MailIcon width={18} height={18} className="mt-0.5 shrink-0 text-white/70" />
               <a href={`mailto:${site.email}`} className="transition-colors hover:text-white">
                 {site.email}
               </a>
             </li>
             <li className="flex gap-3">
-              <PinIcon width={18} height={18} className="mt-0.5 shrink-0 text-brand" />
+              <PinIcon width={18} height={18} className="mt-0.5 shrink-0 text-white/70" />
               {site.address}
             </li>
             <li className="flex gap-3">
-              <ClockIcon width={18} height={18} className="mt-0.5 shrink-0 text-brand" />
+              <ClockIcon width={18} height={18} className="mt-0.5 shrink-0 text-white/70" />
               {site.hours}
             </li>
           </ul>

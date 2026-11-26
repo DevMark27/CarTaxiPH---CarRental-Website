@@ -127,7 +127,7 @@ export function VehicleGallery({ images, label }: { images: GallerySide[]; label
               </div>
               <span
                 className={`block truncate border-t border-line bg-white px-2.5 py-1.5 text-[11px] font-semibold ${
-                  selected ? "text-brand" : "text-muted group-hover:text-ink"
+                  selected ? "font-semibold text-ink" : "text-muted group-hover:text-ink"
                 }`}
               >
                 {img.label}

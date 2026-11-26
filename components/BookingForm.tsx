@@ -514,7 +514,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
           </div>
           <div className="flex justify-between gap-4 py-3.5">
             <dt className="text-muted">Quotation</dt>
-            <dd className="font-semibold text-brand">Distance-based quote via WhatsApp</dd>
+            <dd className="font-semibold text-emerald-700">Distance-based quote via WhatsApp</dd>
           </div>
         </dl>
 
@@ -529,7 +529,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
               href={site.whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-brand underline underline-offset-2"
+              className="font-semibold text-ink underline underline-offset-2 hover:text-brand"
             >
               WhatsApp
             </a>{" "}
@@ -561,7 +561,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
       {/* Connected-Circle Progress Stepper */}
       <nav aria-label="Reservation progress" className="rounded-xl border border-line bg-white px-5 py-4 sm:px-7">
         <div className="mb-3 flex items-center justify-between md:hidden">
-          <span className="text-xs font-semibold uppercase tracking-wider text-brand">
+          <span className="text-xs font-semibold uppercase tracking-wider text-ink">
             Step {activeStep + 1} of {STEPS.length}
           </span>
           <span className="text-sm font-semibold text-ink">{STEPS[activeStep].title}</span>
@@ -628,7 +628,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
 
                   <span
                     className={`hidden text-xs font-semibold md:block ${
-                      isActive ? "text-ink" : isCompleted ? "text-ink group-hover:text-brand" : "text-muted"
+                      isActive ? "text-ink" : isCompleted ? "text-ink group-hover:text-ink" : "text-muted"
                     }`}
                   >
                     {step.title}
@@ -656,7 +656,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
       <details className="rounded-xl border border-line bg-white lg:hidden">
         <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
           <span>Booking Summary · {vehicleName(vehicle)}</span>
-          <span className="text-xs font-medium text-brand">Details</span>
+          <span className="text-xs font-medium text-charcoal">Details</span>
         </summary>
         <div className="space-y-2 border-t border-line px-4 py-3 text-xs text-muted">
           <p className="font-medium text-ink">
@@ -667,7 +667,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
             Schedule: <strong className="text-ink">{start ? `${start} ${startTime}` : "Not set"}</strong> ({durationDays}{" "}
             {durationDays === 1 ? "day" : "days"})
           </p>
-          <p>Quote: <strong className="text-brand">Distance-based via WhatsApp</strong></p>
+          <p>Quote: <strong className="text-emerald-700">Distance-based via WhatsApp</strong></p>
         </div>
       </details>
 
@@ -712,7 +712,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       type="button"
                       onClick={() => setVehiclePickerOpen((open) => !open)}
                       aria-expanded={vehiclePickerOpen}
-                      className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-brand transition hover:border-brand hover:bg-brand/5"
+                      className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-charcoal transition hover:border-ink hover:bg-mist"
                     >
                       {vehiclePickerOpen ? "Close" : "Change Vehicle"}
                     </button>
@@ -826,9 +826,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         clearError("availability");
                       }}
                       placeholder="e.g. NAIA Terminal 3"
-                      className={`${inputCls} ${errors.pickup ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.pickup ? "border-error" : ""}`}
                     />
-                    {errors.pickup && <span className="mt-1 block text-xs text-brand">{errors.pickup}</span>}
+                    {errors.pickup && <span className="mt-1 block text-xs text-error">{errors.pickup}</span>}
                   </label>
 
                   <label className={labelCls}>
@@ -840,7 +840,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                           setDropoff(pickup);
                           clearError("dropoff");
                         }}
-                        className="text-xs font-medium text-brand hover:underline"
+                        className="text-xs font-medium text-charcoal underline-offset-4 hover:text-ink hover:underline"
                       >
                         Same as pick-up
                       </button>
@@ -855,9 +855,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         clearError("dropoff");
                       }}
                       placeholder="e.g. Tagaytay City"
-                      className={`${inputCls} ${errors.dropoff ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.dropoff ? "border-error" : ""}`}
                     />
-                    {errors.dropoff && <span className="mt-1 block text-xs text-brand">{errors.dropoff}</span>}
+                    {errors.dropoff && <span className="mt-1 block text-xs text-error">{errors.dropoff}</span>}
                   </label>
 
                   <div className="sm:col-span-2 flex flex-wrap items-center gap-1.5 -mt-2">
@@ -873,7 +873,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         }}
                         className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium transition ${
                           pickup === loc
-                            ? "border-brand bg-brand/10 text-brand"
+                            ? "border-ink bg-ink text-white"
                             : "border-line bg-white text-muted hover:border-ink/40 hover:text-ink"
                         }`}
                       >
@@ -895,9 +895,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         clearError("start");
                         clearError("availability");
                       }}
-                      className={`${inputCls} ${errors.start ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.start ? "border-error" : ""}`}
                     />
-                    {errors.start && <span className="mt-1 block text-xs text-brand">{errors.start}</span>}
+                    {errors.start && <span className="mt-1 block text-xs text-error">{errors.start}</span>}
                   </label>
 
                   <label className={labelCls}>
@@ -912,9 +912,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         clearError("startTime");
                         clearError("availability");
                       }}
-                      className={`${inputCls} ${errors.startTime ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.startTime ? "border-error" : ""}`}
                     />
-                    {errors.startTime && <span className="mt-1 block text-xs text-brand">{errors.startTime}</span>}
+                    {errors.startTime && <span className="mt-1 block text-xs text-error">{errors.startTime}</span>}
                   </label>
 
                   <div className={labelCls}>
@@ -946,7 +946,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         +
                       </button>
                     </div>
-                    {errors.passengers && <span className="mt-1 block text-xs text-brand">{errors.passengers}</span>}
+                    {errors.passengers && <span className="mt-1 block text-xs text-error">{errors.passengers}</span>}
                   </div>
 
                   <div className="sm:col-span-2">
@@ -983,7 +983,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       <button
                         type="button"
                         onClick={() => setShowNotes(true)}
-                        className="text-xs font-semibold text-brand hover:underline"
+                        className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline"
                       >
                         + Add trip purpose or special notes (optional)
                       </button>
@@ -1008,7 +1008,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                 </div>
 
                 {errors.availability && (
-                  <p role="alert" className="mt-4 rounded-lg border border-brand/30 bg-brand/5 px-4 py-3 text-xs font-medium text-brand">
+                  <p role="alert" className="mt-4 rounded-lg border border-error/30 bg-error/5 px-4 py-3 text-xs font-medium text-error">
                     {errors.availability}
                   </p>
                 )}
@@ -1056,9 +1056,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         setFullName(e.target.value);
                         clearError("fullName");
                       }}
-                      className={`${inputCls} ${errors.fullName ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.fullName ? "border-error" : ""}`}
                     />
-                    {errors.fullName && <span className="mt-1 block text-xs text-brand">{errors.fullName}</span>}
+                    {errors.fullName && <span className="mt-1 block text-xs text-error">{errors.fullName}</span>}
                   </label>
 
                   <label className={labelCls}>
@@ -1074,9 +1074,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         setEmail(e.target.value);
                         clearError("email");
                       }}
-                      className={`${inputCls} ${errors.email ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.email ? "border-error" : ""}`}
                     />
-                    {errors.email && <span className="mt-1 block text-xs text-brand">{errors.email}</span>}
+                    {errors.email && <span className="mt-1 block text-xs text-error">{errors.email}</span>}
                   </label>
 
                   <label className={labelCls}>
@@ -1092,9 +1092,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         setMobile(e.target.value);
                         clearError("mobile");
                       }}
-                      className={`${inputCls} ${errors.mobile ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.mobile ? "border-error" : ""}`}
                     />
-                    {errors.mobile && <span className="mt-1 block text-xs text-brand">{errors.mobile}</span>}
+                    {errors.mobile && <span className="mt-1 block text-xs text-error">{errors.mobile}</span>}
                   </label>
 
                   <label className={`${labelCls} sm:col-span-2`}>
@@ -1109,9 +1109,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         setAddress(e.target.value);
                         clearError("address");
                       }}
-                      className={`${inputCls} ${errors.address ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.address ? "border-error" : ""}`}
                     />
-                    {errors.address && <span className="mt-1 block text-xs text-brand">{errors.address}</span>}
+                    {errors.address && <span className="mt-1 block text-xs text-error">{errors.address}</span>}
                   </label>
 
                   {/* Progressive Disclosure for Emergency Contact */}
@@ -1120,7 +1120,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       <button
                         type="button"
                         onClick={() => setShowEmergency(true)}
-                        className="text-xs font-semibold text-brand hover:underline"
+                        className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline"
                       >
                         + Add emergency contact (optional)
                       </button>
@@ -1202,9 +1202,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         clearError("idNumber");
                       }}
                       placeholder="e.g. N01-23-456789"
-                      className={`${inputCls} ${errors.idNumber ? "border-brand" : ""}`}
+                      className={`${inputCls} ${errors.idNumber ? "border-error" : ""}`}
                     />
-                    {errors.idNumber && <span className="mt-1 block text-xs text-brand">{errors.idNumber}</span>}
+                    {errors.idNumber && <span className="mt-1 block text-xs text-error">{errors.idNumber}</span>}
                   </label>
                 </div>
 
@@ -1233,7 +1233,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                           <button
                             type="button"
                             onClick={() => removeDoc(slot)}
-                            className="text-xs font-semibold text-brand hover:underline"
+                            className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline"
                           >
                             Remove
                           </button>
@@ -1341,7 +1341,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                           setVehiclePickerOpen(true);
                           scrollToWizardTop();
                         }}
-                        className="text-xs font-semibold text-brand hover:underline"
+                        className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline"
                       >
                         Change
                       </button>
@@ -1355,7 +1355,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   <div className="py-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-muted">Trip Details</h3>
-                      <button type="button" onClick={() => setActiveStep(0)} className="text-xs font-semibold text-brand hover:underline">
+                      <button type="button" onClick={() => setActiveStep(0)} className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline">
                         Edit
                       </button>
                     </div>
@@ -1370,7 +1370,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   <div className="py-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-muted">Customer Information</h3>
-                      <button type="button" onClick={() => setActiveStep(1)} className="text-xs font-semibold text-brand hover:underline">
+                      <button type="button" onClick={() => setActiveStep(1)} className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline">
                         Edit
                       </button>
                     </div>
@@ -1385,7 +1385,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   <div className="py-4">
                     <div className="flex items-center justify-between">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-muted">Identification Documents</h3>
-                      <button type="button" onClick={() => setActiveStep(2)} className="text-xs font-semibold text-brand hover:underline">
+                      <button type="button" onClick={() => setActiveStep(2)} className="text-xs font-semibold text-charcoal underline-offset-4 hover:text-ink hover:underline">
                         Edit
                       </button>
                     </div>
@@ -1421,7 +1421,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                         href={site.whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-semibold text-brand underline underline-offset-2"
+                        className="font-semibold text-ink underline underline-offset-2 hover:text-brand"
                       >
                         WhatsApp
                       </a>{" "}
@@ -1465,7 +1465,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                   </div>
                   <div className="flex justify-between gap-4 py-3">
                     <dt className="text-muted">Initial status</dt>
-                    <dd className="font-semibold text-brand">Pending Admin Confirmation</dd>
+                    <dd className="font-semibold text-warning">Pending Admin Confirmation</dd>
                   </div>
                 </dl>
 
@@ -1484,9 +1484,9 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                     <strong>with driver only</strong>, and requires administrator confirmation before payment.
                   </span>
                 </label>
-                {errors.agreedTerms && <p className="mt-2 text-xs font-medium text-brand">{errors.agreedTerms}</p>}
+                {errors.agreedTerms && <p className="mt-2 text-xs font-medium text-error">{errors.agreedTerms}</p>}
                 {submitError && (
-                  <p role="alert" className="mt-4 rounded-lg border border-brand/30 bg-brand/5 px-4 py-3 text-xs font-medium text-brand">
+                  <p role="alert" className="mt-4 rounded-lg border border-error/30 bg-error/5 px-4 py-3 text-xs font-medium text-error">
                     {submitError}
                   </p>
                 )}
@@ -1567,7 +1567,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                 </div>
                 <div className="flex justify-between gap-3 border-t border-line pt-3">
                   <dt className="font-semibold text-ink">Quote</dt>
-                  <dd className="font-semibold text-brand">Via WhatsApp</dd>
+                  <dd className="font-semibold text-emerald-700">Via WhatsApp</dd>
                 </div>
               </dl>
               <p className="mt-3 text-[11px] leading-4 text-muted">

@@ -50,7 +50,7 @@ export function FaqSection() {
           transition={{ duration: 0.5, ease }}
           className="text-center"
         >
-          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+          <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="inline-block h-0.5 w-6 bg-brand" />
             FAQ
           </p>
@@ -79,7 +79,7 @@ export function FaqSection() {
                     transition={{ duration: 0.2, ease }}
                     className={`grid h-7 w-7 shrink-0 place-items-center rounded-full border text-xs font-bold transition-colors ${
                       isOpen
-                        ? "border-brand bg-brand text-white"
+                        ? "border-ink bg-ink text-white"
                         : "border-line bg-mist text-charcoal"
                     }`}
                   >

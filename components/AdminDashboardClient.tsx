@@ -141,7 +141,7 @@ export function AdminDashboardClient() {
             className="mt-2 w-full rounded-xl border border-line bg-mist/35 px-4 py-3 text-sm outline-none focus:border-ink focus:bg-white"
           />
         </label>
-        {authError && <p className="mt-3 text-xs font-medium text-brand">{authError}</p>}
+        {authError && <p className="mt-3 text-xs font-medium text-error">{authError}</p>}
         <button
           type="submit"
           disabled={loading}
@@ -172,7 +172,7 @@ export function AdminDashboardClient() {
             <button
               type="button"
               onClick={handleLogout}
-              className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-muted hover:border-brand hover:text-brand"
+              className="rounded-full border border-line px-4 py-1.5 text-xs font-semibold text-muted hover:border-ink hover:text-ink"
             >
               Sign Out
             </button>
@@ -194,7 +194,7 @@ export function AdminDashboardClient() {
                   onClick={() => openBooking(b)}
                   className={`w-full rounded-2xl border p-5 text-left transition ${
                     isSelected
-                      ? "border-brand bg-white shadow-sm"
+                      ? "border-ink bg-white shadow-sm"
                       : "border-line bg-white hover:border-charcoal/40"
                   }`}
                 >
@@ -209,7 +209,7 @@ export function AdminDashboardClient() {
                     {b.customer.fullName} · {b.pickupDate} ({b.durationDays}{" "}
                     {b.durationDays === 1 ? "day" : "days"})
                   </p>
-                  <p className="mt-2 text-xs font-semibold text-brand">
+                  <p className="mt-2 text-xs font-semibold text-emerald-700">
                     {b.pickupLocation} → {b.dropoffLocation}
                   </p>
                 </button>
@@ -240,7 +240,7 @@ export function AdminDashboardClient() {
               <div className="flex justify-between gap-3"><dt className="text-muted">Address</dt><dd className="text-right text-ink">{selected.customer.address}</dd></div>
               <div className="flex justify-between gap-3 border-t border-line pt-2"><dt className="text-muted">Pick-up</dt><dd className="text-right text-ink">{selected.pickupLocation} · {selected.pickupDate} {selected.pickupTime}</dd></div>
               <div className="flex justify-between gap-3"><dt className="text-muted">Drop-off & Duration</dt><dd className="text-right text-ink">{selected.dropoffLocation} · {selected.durationDays} {selected.durationDays === 1 ? "day" : "days"}</dd></div>
-              <div className="flex justify-between gap-3"><dt className="text-muted">Pricing</dt><dd className="font-semibold text-brand">Distance-based (quote via WhatsApp)</dd></div>
+              <div className="flex justify-between gap-3"><dt className="text-muted">Pricing</dt><dd className="font-semibold text-emerald-700">Distance-based (quote via WhatsApp)</dd></div>
             </dl>
 
             {/* Uploaded Identification Documents (Admin-only secure links) */}
@@ -261,7 +261,7 @@ export function AdminDashboardClient() {
                       href={`/api/uploads/${doc.storedName}`}
                       target="_blank"
                       rel="noreferrer"
-                      className="rounded-full border border-line bg-mist/60 px-3.5 py-1.5 text-xs font-semibold text-ink hover:border-brand hover:text-brand"
+                      className="rounded-full border border-line bg-mist/60 px-3.5 py-1.5 text-xs font-semibold text-ink hover:border-ink"
                     >
                       View {label} ({doc.originalName})
                     </a>
@@ -322,7 +322,7 @@ export function AdminDashboardClient() {
                   type="button"
                   disabled={saving}
                   onClick={() => handleSave("REJECTED")}
-                  className="rounded-full border border-brand px-5 py-2.5 text-xs font-semibold text-brand hover:bg-brand hover:text-white disabled:opacity-60"
+                  className="rounded-full border border-error px-5 py-2.5 text-xs font-semibold text-error hover:bg-error hover:text-white disabled:opacity-60"
                 >
                   Reject
                 </button>

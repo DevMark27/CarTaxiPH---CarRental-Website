@@ -63,7 +63,7 @@ export function WhyChooseSection() {
           transition={{ duration: 0.6, ease }}
           className="max-w-2xl"
         >
-          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="inline-block h-0.5 w-6 bg-brand" />
             Why Choose CarTaxi PH?
           </p>
@@ -98,7 +98,7 @@ export function WhyChooseSection() {
         <div className="mt-16 rounded-3xl border border-line bg-white p-6 shadow-sm sm:p-8">
           <div className="flex flex-col justify-between gap-4 border-b border-line pb-6 lg:flex-row lg:items-end">
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">
                 Trip Recommender
               </p>
               <h3 className="mt-1.5 text-2xl font-bold tracking-tight text-charcoal">
@@ -148,7 +148,7 @@ export function WhyChooseSection() {
                   />
                 ) : (
                   <div className="flex h-full flex-col justify-end bg-gradient-to-br from-charcoal to-ink p-6 text-white">
-                    <SunIcon width={32} height={32} className="text-brand" />
+                    <SunIcon width={32} height={32} className="text-charcoal" />
                     <p className="mt-2 text-sm text-white/75">Boracay · El Nido · Siargao · Bohol</p>
                   </div>
                 )}
@@ -166,10 +166,10 @@ export function WhyChooseSection() {
                     <Link
                       key={rv.slug}
                       href={`/fleet/${rv.slug}`}
-                      className="group flex items-center justify-between gap-3 rounded-2xl border border-line bg-mist/60 p-4 transition-all hover:border-brand hover:bg-white"
+                      className="group flex items-center justify-between gap-3 rounded-2xl border border-line bg-mist/60 p-4 transition-all hover:border-charcoal/40 hover:bg-white"
                     >
                       <div>
-                        <p className="font-semibold text-charcoal group-hover:text-brand">
+                        <p className="font-semibold text-charcoal group-hover:text-ink">
                           {vehicleName(rv)}
                         </p>
                         <p className="text-xs text-muted">
@@ -179,7 +179,7 @@ export function WhyChooseSection() {
                       <ArrowRightIcon
                         width={16}
                         height={16}
-                        className="shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-brand"
+                        className="shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
                       />
                     </Link>
                   ))}

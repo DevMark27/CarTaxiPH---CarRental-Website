@@ -101,7 +101,7 @@ export function HowItWorksSection() {
           className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
         >
           <div className="max-w-2xl">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="inline-block h-0.5 w-6 bg-brand" />
               How It Works
             </p>
@@ -201,7 +201,7 @@ export function HowItWorksSection() {
                     whileTap={prefersReducedMotion ? undefined : { scale: 0.99 }}
                     className={`relative flex h-full w-full flex-col rounded-2xl border p-7 text-left transition-colors duration-200 ${
                       active
-                        ? "border-brand bg-mist/60 shadow-[0_20px_50px_-24px_rgba(227,24,36,0.28)]"
+                        ? "border-charcoal bg-mist/60 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.16)]"
                         : "border-line bg-white shadow-xs hover:border-charcoal/35"
                     }`}
                   >
@@ -213,7 +213,7 @@ export function HowItWorksSection() {
                       >
                         <Icon width={20} height={20} />
                       </span>
-                      <span className={`font-mono text-xs font-bold ${active ? "text-brand" : "text-muted"}`}>
+                      <span className={`font-mono text-xs font-bold ${active ? "text-ink" : "text-muted"}`}>
                         {s.num}
                       </span>
                     </div>
@@ -246,7 +246,7 @@ export function HowItWorksSection() {
                   href={currentTip.ctaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink underline-offset-4 hover:text-brand hover:underline"
                 >
                   {currentTip.ctaLabel}
                   <ArrowRightIcon width={14} height={14} />
@@ -254,7 +254,7 @@ export function HowItWorksSection() {
               ) : (
                 <Link
                   href={currentTip.ctaHref}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink underline-offset-4 hover:text-brand hover:underline"
                 >
                   {currentTip.ctaLabel}
                   <ArrowRightIcon width={14} height={14} />
@@ -287,7 +287,7 @@ export function HowItWorksSection() {
                     onClick={() => setSelectedStep(i)}
                     aria-expanded={active}
                     className={`relative w-full rounded-2xl border p-5 text-left transition-colors ${
-                      active ? "border-brand bg-mist/50 shadow-sm" : "border-line bg-white shadow-xs"
+                      active ? "border-charcoal bg-mist/50 shadow-sm" : "border-line bg-white shadow-xs"
                     }`}
                   >
                     <span
@@ -296,7 +296,7 @@ export function HowItWorksSection() {
                         active ? "bg-brand" : "bg-charcoal"
                       }`}
                     />
-                    <span className={`text-xs font-bold uppercase tracking-wider ${active ? "text-brand" : "text-muted"}`}>
+                    <span className={`text-xs font-bold uppercase tracking-wider ${active ? "text-ink" : "text-muted"}`}>
                       Step {s.num}
                     </span>
                     <h3 className="mt-1 text-lg font-semibold text-charcoal">{s.title}</h3>

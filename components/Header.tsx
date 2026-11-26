@@ -78,7 +78,7 @@ export function Header() {
                 onClick={() => handleNavClick(item.href)}
                 aria-current={active ? "page" : undefined}
                 className={`relative py-1 transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:bg-brand after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100 ${
-                  active ? "font-semibold text-brand after:scale-x-100" : "after:scale-x-0"
+                  active ? "font-semibold text-white after:scale-x-100" : "after:scale-x-0"
                 }`}
               >
                 {item.label}
@@ -120,7 +120,7 @@ export function Header() {
                   aria-current={active ? "page" : undefined}
                   className={`block rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
                     active
-                      ? "bg-brand/15 font-semibold text-brand"
+                      ? "border-l-2 border-brand bg-white/10 font-semibold text-white"
                       : "text-white/90 hover:bg-white/10 hover:text-white"
                   }`}
                 >

@@ -48,7 +48,7 @@ export function MadeForEveryJourneySection() {
           className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"
         >
           <div className="max-w-2xl">
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="inline-block h-0.5 w-6 bg-brand" />
               Made for Every Journey
             </p>
@@ -62,7 +62,7 @@ export function MadeForEveryJourneySection() {
           </div>
           <Link
             href="/book"
-            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition hover:border-brand hover:bg-brand hover:text-white sm:self-auto"
+            className="inline-flex items-center gap-2 self-start rounded-full border border-charcoal/25 bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-charcoal transition hover:border-ink hover:bg-ink hover:text-white sm:self-auto"
           >
             Start Booking
             <ArrowRightIcon width={14} height={14} />
@@ -91,7 +91,7 @@ export function MadeForEveryJourneySection() {
                 <span className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-brand transition-transform duration-300 group-hover:scale-x-100" />
               </div>
               <div className="p-6">
-                <h3 className="text-lg font-semibold text-charcoal transition-colors group-hover:text-brand">
+                <h3 className="text-lg font-semibold text-charcoal transition-colors group-hover:text-ink">
                   {item.title}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-muted">{item.description}</p>
