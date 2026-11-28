@@ -68,6 +68,7 @@ export async function POST(request: Request) {
     }
 
     const pickupLocation = String(body.pickupLocation || "").trim().slice(0, 160);
+    const pickupAddress = String(body.pickupAddress || "").trim().slice(0, 240) || undefined;
     const dropoffLocation = String(body.dropoffLocation || "").trim().slice(0, 160);
     const pickupDate = String(body.pickupDate || "").trim().slice(0, 20);
     const pickupTime = String(body.pickupTime || "").trim().slice(0, 10);
@@ -144,6 +145,7 @@ export async function POST(request: Request) {
       dailyRate: vehicle.price,
       arrangement,
       pickupLocation,
+      pickupAddress,
       dropoffLocation,
       pickupDate,
       pickupTime,

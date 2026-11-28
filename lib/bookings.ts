@@ -30,6 +30,7 @@ export type BookingRecord = {
   dailyRate: number;
   arrangement: "One-way" | "Round trip";
   pickupLocation: string;
+  pickupAddress?: string;
   dropoffLocation: string;
   pickupDate: string;
   pickupTime: string;

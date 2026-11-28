@@ -9,6 +9,7 @@ export type BookingEmailSummary = {
   vehicleCategory: string;
   arrangement: "One-way" | "Round trip";
   pickupLocation: string;
+  pickupAddress?: string;
   dropoffLocation: string;
   pickupDate: string;
   pickupTime: string;

@@ -114,6 +114,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
   // Step 1: Trip Details
   const [arrangement, setArrangement] = useState<RentalArrangement>(initialArrangement);
   const [pickup, setPickup] = useState(params.get("pickup") ?? site.pickupLocations[0]);
+  const [pickupAddress, setPickupAddress] = useState("");
   const [dropoff, setDropoff] = useState(params.get("dropoff") ?? params.get("pickup") ?? site.pickupLocations[0]);
   const [start, setStart] = useState(params.get("start") ?? "");
   const [startTime, setStartTime] = useState(params.get("startTime") ?? "09:00");
@@ -428,6 +429,7 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
           vehicleSlug: vehicle.slug,
           arrangement: activeArrangement,
           pickupLocation: pickup.trim(),
+          pickupAddress: pickupAddress.trim() || undefined,
           dropoffLocation: dropoff.trim(),
           pickupDate: start,
           pickupTime: startTime,
@@ -858,6 +860,17 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       className={`${inputCls} ${errors.dropoff ? "border-error" : ""}`}
                     />
                     {errors.dropoff && <span className="mt-1 block text-xs text-error">{errors.dropoff}</span>}
+                  </label>
+
+                  <label className={`${labelCls} sm:col-span-2`}>
+                    <span>Exact pick-up address / landmark (optional)</span>
+                    <input
+                      name="pickupAddress"
+                      value={pickupAddress}
+                      onChange={(e) => setPickupAddress(e.target.value)}
+                      placeholder="e.g. Gate 3 Arrival Bay, Hotel Lobby, or exact street address"
+                      className={inputCls}
+                    />
                   </label>
 
                   <div className="sm:col-span-2 flex flex-wrap items-center gap-1.5 -mt-2">
@@ -1364,7 +1377,13 @@ export function BookingForm({ defaultVehicleSlug }: { defaultVehicleSlug?: strin
                       </button>
                     </div>
                     <dl className="mt-2.5 grid gap-2 sm:grid-cols-2">
-                      <div><dt className="text-xs text-muted">Pick-up</dt><dd className="font-medium text-ink">{pickup}</dd></div>
+                      <div>
+                        <dt className="text-xs text-muted">Pick-up</dt>
+                        <dd className="font-medium text-ink">
+                          {pickup}
+                          {pickupAddress.trim() ? ` (${pickupAddress.trim()})` : ""}
+                        </dd>
+                      </div>
                       <div><dt className="text-xs text-muted">Drop-off</dt><dd className="font-medium text-ink">{dropoff}</dd></div>
                       <div><dt className="text-xs text-muted">Schedule</dt><dd className="font-medium text-ink">{start} · {startTime}</dd></div>
                       <div><dt className="text-xs text-muted">Passengers</dt><dd className="font-medium text-ink">{passengers} {passengers === 1 ? "passenger" : "passengers"}</dd></div>

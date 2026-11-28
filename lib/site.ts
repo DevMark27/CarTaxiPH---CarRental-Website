@@ -8,7 +8,7 @@ export const site = {
     "Reliable Toyota and Mitsubishi rentals for airport transfers, family vacations, out-of-town trips, business travel, group tours and special occasions. Available for one-way or round trip.",
   phone: "+63 914827291",
   phoneHref: "tel:+639850547746",
-  whatsappHref: "https://wa.me/639850547746",
+  whatsappHref: "https://wa.me/639614827291",
   email: "Lestermendones021@gmail.com",
   address: "Pasay City, Metro Manila, Philippines",
   hours: "Open daily, 6:00 AM – 10:00 PM",

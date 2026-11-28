@@ -74,7 +74,7 @@ export async function POST(request: Request) {
 
     const id = crypto.randomUUID();
     const storedName = `${id}${verified.ext}`;
-    const destPath = path.join(PRIVATE_UPLOADS_DIR, storedName);
+    const destPath = path.join(/* turbopackIgnore: true */ PRIVATE_UPLOADS_DIR, storedName);
     fs.writeFileSync(destPath, buffer);
 
     const safeOriginalName = path.basename(file.name).slice(0, 120) || storedName;

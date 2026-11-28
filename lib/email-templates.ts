@@ -71,6 +71,7 @@ export function buildOwnerBookingRequestEmail(params: {
       <tr><td style="padding:6px 0;color:#71717a;width:155px;">Vehicle</td><td style="padding:6px 0;font-weight:600;color:#18181b;">${escapeHtml(booking.vehicleName)} (${escapeHtml(booking.vehicleCategory)})</td></tr>
       <tr><td style="padding:6px 0;color:#71717a;">Arrangement</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.arrangement)}</td></tr>
       <tr><td style="padding:6px 0;color:#71717a;">Pick-up Location</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.pickupLocation)}</td></tr>
+      ${booking.pickupAddress ? `<tr><td style="padding:6px 0;color:#71717a;">Exact Pick-up Address</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.pickupAddress)}</td></tr>` : ""}
       <tr><td style="padding:6px 0;color:#71717a;">Drop-off Location</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.dropoffLocation)}</td></tr>
       <tr><td style="padding:6px 0;color:#71717a;">Pick-up Schedule</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.pickupDate)} at ${escapeHtml(booking.pickupTime)}</td></tr>
       <tr><td style="padding:6px 0;color:#71717a;">Return Schedule</td><td style="padding:6px 0;color:#18181b;">${escapeHtml(booking.returnDate)} at ${escapeHtml(booking.returnTime)}</td></tr>

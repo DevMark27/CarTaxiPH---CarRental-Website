@@ -25,7 +25,7 @@ export async function GET(
     return NextResponse.json({ error: "Invalid document identifier" }, { status: 400 });
   }
 
-  const filePath = path.join(PRIVATE_UPLOADS_DIR, safeName);
+  const filePath = path.join(/* turbopackIgnore: true */ PRIVATE_UPLOADS_DIR, safeName);
   if (!fs.existsSync(filePath)) {
     return NextResponse.json({ error: "Document not found" }, { status: 404 });
   }

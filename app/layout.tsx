@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description: site.description,
+  icons: {
+    icon: "/images/cartaxiph-logo.png",
+    apple: "/images/cartaxiph-logo.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
